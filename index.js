@@ -4,6 +4,19 @@ const app = express();
 const dotenv = require('dotenv').config();
 const mongoose = require("mongoose");
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
+// index page 
+app.get('/', function(req, res) {
+  res.render('pages/index');
+});
+
+// about page 
+app.get('/about', function(req, res) {
+  res.render('pages/about');
+});
+
 //IMPORT ROUTES
 const authRoute = require("./routes/auth");
 const postRoute = require('./routes/posts');
