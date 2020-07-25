@@ -50,7 +50,8 @@ router.post("/login", async (req, res) => {
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
 
   // LOGGED IN
-  res.header('auth-token', token).send("Successfully Logged In - Token in header");
+  const activeUser = await User.findOne({ _id: user._id });
+  res.header('auth-token', token).send("Welcome " + activeUser.name + "! The token is in the header.");
 
 });
 
